@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Malformed Page</title>
+</head>
+<body>
+    <script>
+        let productDataArray = {
+            "current_page": 1,
+            "last_page": 1,
+            "data": [
+                {
+                    "id": "invalid_id",
+                    "title": "Malformed Phone",
+                    "slug": "malformed-phone"
+                    // Missing closing brace and other required fields
+            ]
+        };
+    </script>
+    
+    <div class="malformed-content">
+        <p>This page has malformed JSON and HTML structure</p>
+        <table>
+            <tr>
+                <td>Incomplete table
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+[
+    {
+        "brand": "Realme",
+        "model": "Note 60x",
+        "device_type": "Smartphone",
+        "release_date": "11 January 2025",
+        "status": "Available",
+        "operating_system": "Android",
+        "os_version": "v14",
+        "user_interface": "Realme UI",
+        "chipset": "Unisoc Tiger T612",
+        "cpu": "Octa-core (2x1.8 GHz Cortex-A75 & 6x1.8 GHz Cortex-A55)",
+        "cpu_cores": "8 Cores",
+        "architecture": "64 bit",
+        "fabrication": "12 nm",
+        "gpu": "Mali-G57",
+        "detail_url": "https://www.mobiledokan.com/realme-note-60x",
+        "image_url": "image_url.jpg"
+    },
+    {
+        "brand": "Infinix",
+        "model": "Smart 8 Pro",
+        "device_type": "Smartphone",
+        "os": "Android v13",
+        "display": "6.6''720x1612p",
+        "ram": "4GB",
+        "storage": "128GB",
+        "front_camera": "8MP",
+        "main_camera": "50+0.08MP",
+        "battery": "Li-Po 5000mAh"
+    },
+    {
+        "brand": "Google",
+        "model": "Pixel 7",
+        "device_type": "Smartphone",
+        "os": "Android v13"
+    }
+]
