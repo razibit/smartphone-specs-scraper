@@ -18,13 +18,13 @@ from typing import List, Optional
 from pathlib import Path
 from datetime import datetime
 
-from mobiledokan_scraper.utils.http_client import HTTPClient
-from mobiledokan_scraper.scrapers.listing_scraper import ListingScraper
-from mobiledokan_scraper.scrapers.detail_scraper import DetailScraper
-from mobiledokan_scraper.utils.file_manager import FileManager
-from mobiledokan_scraper.models.phone_data import PhoneSpecifications
-from mobiledokan_scraper.utils.logging_config import setup_logging, ProgressTracker
-from mobiledokan_scraper.utils.error_handling import (
+from smartphone_specs_scraper.utils.http_client import HTTPClient
+from smartphone_specs_scraper.scrapers.listing_scraper import ListingScraper
+from smartphone_specs_scraper.scrapers.detail_scraper import DetailScraper
+from smartphone_specs_scraper.utils.file_manager import FileManager
+from smartphone_specs_scraper.models.phone_data import PhoneSpecifications
+from smartphone_specs_scraper.utils.logging_config import setup_logging, ProgressTracker
+from smartphone_specs_scraper.utils.error_handling import (
     setup_error_handling, 
     ScraperError, 
     NetworkError, 
@@ -32,7 +32,7 @@ from mobiledokan_scraper.utils.error_handling import (
     CriticalError,
     retry_on_error
 )
-from mobiledokan_scraper.config.settings import (
+from smartphone_specs_scraper.config.settings import (
     BASE_URL, 
     LOG_LEVEL, 
     LOG_FORMAT, 
@@ -607,7 +607,7 @@ def main():
     
     # Update log level if specified
     if args.log_level != LOG_LEVEL:
-        import mobiledokan_scraper.config.settings as settings
+        import smartphone_specs_scraper.config.settings as settings
         settings.LOG_LEVEL = args.log_level
     
     try:

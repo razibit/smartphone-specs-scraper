@@ -38,12 +38,12 @@ python main.py --output-dir ./data --log-level DEBUG
 For a shell-independent entry point after installation, use:
 
 ```bash
-mobiledokan-scraper --max-phones 10
+smartphone-specs-scraper --max-phones 10
 ```
 
 ## Configuration
 
-Edit [`mobiledokan_scraper/config/settings.py`](../mobiledokan_scraper/config/settings.py) to change:
+Edit [`smartphone_specs_scraper/config/settings.py`](../smartphone_specs_scraper/config/settings.py) to change:
 
 - `BASE_URL` and `DOMAIN`;
 - `REQUEST_DELAY`, `REQUEST_TIMEOUT`, `MAX_RETRIES`, and backoff values;
@@ -51,17 +51,17 @@ Edit [`mobiledokan_scraper/config/settings.py`](../mobiledokan_scraper/config/se
 - HTML selectors and embedded-JavaScript patterns; and
 - logging, batching, and progress settings.
 
-Keep a meaningful delay between requests. A source-site change should be handled by updating the relevant selector or parser and adding a fixture-backed regression test.
+Keep a meaningful delay between requests. A source website change should be handled by updating the relevant selector or parser and adding a fixture-backed regression test.
 
 ## Programmatic workflow
 
 Use the orchestrator when you want the same URL-discovery, detail-scraping, validation, and export behavior as the CLI:
 
 ```python
-from mobiledokan_scraper.config.settings import BASE_URL
-from mobiledokan_scraper.main import MobileDokanScraper
+from smartphone_specs_scraper.config.settings import BASE_URL
+from smartphone_specs_scraper.main import SmartphoneSpecsScraper
 
-scraper = MobileDokanScraper(output_dir="output")
+scraper = SmartphoneSpecsScraper(output_dir="output")
 result = scraper.run_complete_scraping(
     base_url=BASE_URL,
     max_phones=10,
@@ -77,11 +77,11 @@ else:
 The lower-level components can be composed when the full orchestrator is not needed:
 
 ```python
-from mobiledokan_scraper.config.settings import BASE_URL
-from mobiledokan_scraper.scrapers.detail_scraper import DetailScraper
-from mobiledokan_scraper.scrapers.listing_scraper import ListingScraper
-from mobiledokan_scraper.utils.file_manager import FileManager
-from mobiledokan_scraper.utils.http_client import HTTPClient
+from smartphone_specs_scraper.config.settings import BASE_URL
+from smartphone_specs_scraper.scrapers.detail_scraper import DetailScraper
+from smartphone_specs_scraper.scrapers.listing_scraper import ListingScraper
+from smartphone_specs_scraper.utils.file_manager import FileManager
+from smartphone_specs_scraper.utils.http_client import HTTPClient
 
 with HTTPClient(delay=1.0) as client:
     listing = ListingScraper(client)
@@ -116,14 +116,14 @@ See [`data_structure.md`](data_structure.md) for fields and examples.
 The default suite is deterministic and does not make live network requests:
 
 ```bash
-python -m compileall -q main.py mobiledokan_scraper tests
+python -m compileall -q main.py smartphone_specs_scraper tests
 python -m pytest
 ```
 
 Coverage:
 
 ```bash
-python -m pytest --cov=mobiledokan_scraper --cov-report=term-missing
+python -m pytest --cov=smartphone_specs_scraper --cov-report=term-missing
 ```
 
 The live price check is marked `live` and must be requested explicitly:
@@ -157,4 +157,3 @@ This scraper intentionally waits between requests and retries transient failures
 ### Missing fields
 
 Missing fields are represented as `null` in JSON and empty cells in CSV. A missing field is not necessarily a parser failure; compare the source page, the field mapping, and the exported record before changing fallback behavior.
-

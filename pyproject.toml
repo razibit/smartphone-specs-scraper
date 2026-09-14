@@ -3,14 +3,14 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "mobiledokan-scraper"
+name = "smartphone-specs-scraper"
 version = "1.0.0"
-description = "A respectful Python scraper for MobileDokan smartphone listings and specifications."
+description = "A respectful Python scraper for public smartphone listings and specifications."
 readme = "README.md"
 requires-python = ">=3.9"
 license = { file = "LICENSE" }
 authors = [
-    { name = "MobileDokan Scraper contributors" }
+    { name = "Smartphone Specs Scraper contributors" }
 ]
 dependencies = [
     "beautifulsoup4>=4.12.0",
@@ -26,30 +26,29 @@ dev = [
 ]
 
 [project.scripts]
-mobiledokan-scraper = "main:main"
+smartphone-specs-scraper = "main:main"
 
 [tool.setuptools]
 include-package-data = true
 py-modules = ["main"]
 
 [tool.setuptools.packages.find]
-include = ["mobiledokan_scraper*"]
+include = ["smartphone_specs_scraper*"]
 
 [tool.pytest.ini_options]
 addopts = "-ra -m 'not live'"
 markers = [
-    "live: tests that make real requests to MobileDokan and are opt-in",
+    "live: tests that make real requests to the configured source website and are opt-in",
 ]
 pythonpath = ["."]
 testpaths = ["tests", "test_price_integration.py"]
 
 [tool.coverage.run]
 branch = true
-source = ["mobiledokan_scraper"]
+source = ["smartphone_specs_scraper"]
 
 [tool.coverage.report]
 exclude_lines = [
     "pragma: no cover",
     "if __name__ == .__main__.:",
 ]
-

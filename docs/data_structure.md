@@ -1,6 +1,6 @@
 # Data Structure Documentation
 
-This document describes the complete data structure of the scraped phone information from MobileDokan.com.
+This document describes the complete data structure of the scraped phone information from example.com.
 
 ## Overview
 
@@ -176,8 +176,8 @@ Each phone record contains comprehensive specifications organized into the follo
 
 | Field | Type | Description | Example |
 |-------|------|-------------|---------|
-| `image_url` | string | Product image URL | "https://www.mobiledokan.com/wp-content/uploads/..." |
-| `detail_url` | string | Product page URL | "https://www.mobiledokan.com/samsung-galaxy-s24-ultra/" |
+| `image_url` | string | Product image URL | "https://example.com/wp-content/uploads/..." |
+| `detail_url` | string | Product page URL | "https://example.com/samsung-galaxy-s24-ultra/" |
 | `scraped_at` | string | Scraping timestamp | "2024-01-15T10:30:45" |
 
 ## Data Types
@@ -242,4 +242,4 @@ print(df[['brand', 'model', 'battery_capacity']].head())
 4. Choose UTF-8 encoding
 5. Import the data
 
-This data structure provides comprehensive information about smartphones from MobileDokan.com, suitable for analysis, comparison, and research purposes.
+This data structure provides comprehensive information about smartphones from example.com, suitable for analysis, comparison, and research purposes.

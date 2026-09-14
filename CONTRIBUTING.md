@@ -1,13 +1,13 @@
 # Contributing
 
-Thank you for helping improve MobileDokan Scraper. Contributions are welcome for parsing fixes, reliability improvements, tests, documentation, and data-export behavior.
+Thank you for helping improve source-site Scraper. Contributions are welcome for parsing fixes, reliability improvements, tests, documentation, and data-export behavior.
 
 ## Before you start
 
 - Check existing issues and pull requests for related work.
 - For parser changes, include a small representative HTML fixture when possible.
 - Do not commit cookies, access tokens, personal data, scraped logs, or generated output files.
-- Confirm that your proposed requests and usage comply with MobileDokan's published policies and applicable law.
+- Confirm that your proposed requests and usage comply with source-site's published policies and applicable law.
 
 ## Local setup
 
@@ -26,9 +26,9 @@ On Windows PowerShell, activate the environment with:
 ## Checks before submitting a change
 
 ```bash
-python -m compileall -q main.py mobiledokan_scraper tests
+python -m compileall -q main.py smartphone_specs_scraper tests
 python -m pytest
-python -m pytest --cov=mobiledokan_scraper --cov-report=term-missing
+python -m pytest --cov=smartphone_specs_scraper --cov-report=term-missing
 ```
 
 The default test command uses local fixtures and mocks. The live network test is opt-in:
@@ -47,5 +47,5 @@ python -m pytest -m live
 
 ## Pull requests
 
-A pull request should explain the user-facing result, identify the affected modules, and include the checks that were run. If a change depends on the current MobileDokan HTML structure, describe the selectors or source markup involved.
+A pull request should explain the user-facing result, identify the affected modules, and include the checks that were run. If a change depends on the current source-site HTML structure, describe the selectors or source markup involved.
 

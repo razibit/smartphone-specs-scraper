@@ -11,11 +11,11 @@ import csv
 from pathlib import Path
 from unittest.mock import Mock, patch
 
-from mobiledokan_scraper.main import MobileDokanScraper
-from mobiledokan_scraper.models.phone_data import PhoneSpecifications
-from mobiledokan_scraper.scrapers.listing_scraper import ListingScraper
-from mobiledokan_scraper.scrapers.detail_scraper import DetailScraper
-from mobiledokan_scraper.utils.http_client import HTTPClient
+from smartphone_specs_scraper.main import MobileDokanScraper
+from smartphone_specs_scraper.models.phone_data import PhoneSpecifications
+from smartphone_specs_scraper.scrapers.listing_scraper import ListingScraper
+from smartphone_specs_scraper.scrapers.detail_scraper import DetailScraper
+from smartphone_specs_scraper.utils.http_client import HTTPClient
 
 
 class TestDataValidation:
@@ -270,7 +270,7 @@ class TestDataValidation:
         # Test validation with special characters
         assert phone_specs.validate() is True
     
-    @patch('mobiledokan_scraper.utils.http_client.HTTPClient.get')
+    @patch('smartphone_specs_scraper.utils.http_client.HTTPClient.get')
     def test_end_to_end_data_accuracy(self, mock_get, sample_fixtures, temp_output_dir):
         """Test end-to-end data accuracy from scraping to export."""
         # Set up mock responses

@@ -2,17 +2,17 @@
 
 ## Introduction
 
-This feature involves creating a comprehensive Python web scraper for MobileDokan.com that extracts detailed smartphone information from their smartphone category pages. The scraper will navigate through paginated listings, extract individual phone URLs, and then scrape detailed specifications from each phone's detail page. The extracted data will be stored in both JSON and CSV formats for further analysis.
+This feature involves creating a comprehensive Python web scraper for example.com that extracts detailed smartphone information from their smartphone category pages. The scraper will navigate through paginated listings, extract individual phone URLs, and then scrape detailed specifications from each phone's detail page. The extracted data will be stored in both JSON and CSV formats for further analysis.
 
 ## Requirements
 
 ### Requirement 1
 
-**User Story:** As a data analyst, I want to scrape smartphone listings from MobileDokan's category page, so that I can collect URLs of all available smartphones for detailed analysis.
+**User Story:** As a data analyst, I want to scrape smartphone listings from source-site's category page, so that I can collect URLs of all available smartphones for detailed analysis.
 
 #### Acceptance Criteria
 
-1. WHEN the scraper accesses https://www.mobiledokan.com/mobile-category/smartphone THEN the system SHALL extract all smartphone URLs from the current page
+1. WHEN the scraper accesses https://example.com/mobile-category/smartphone THEN the system SHALL extract all smartphone URLs from the current page
 2. WHEN a smartphone listing contains an image URL THEN the system SHALL capture and store the image URL
 3. WHEN the page contains pagination links THEN the system SHALL detect and follow next page URLs (e.g., ?page=207)
 4. WHEN encountering ads or non-mobile links THEN the system SHALL ignore these irrelevant links

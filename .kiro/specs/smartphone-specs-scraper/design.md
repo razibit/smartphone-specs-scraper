@@ -2,7 +2,7 @@
 
 ## Overview
 
-The MobileDokan scraper is designed as a modular Python application that systematically extracts smartphone data from MobileDokan.com. The system follows a three-phase approach: URL discovery, data extraction, and data storage. The architecture emphasizes reliability, maintainability, and respectful scraping practices.
+The source-site scraper is designed as a modular Python application that systematically extracts smartphone data from example.com. The system follows a three-phase approach: URL discovery, data extraction, and data storage. The architecture emphasizes reliability, maintainability, and respectful scraping practices.
 
 Based on analysis of the HTML structure, the scraper will handle:
 - Paginated smartphone listings with JSON data embedded in JavaScript
@@ -15,7 +15,7 @@ Based on analysis of the HTML structure, the scraper will handle:
 The scraper follows a modular architecture with clear separation of concerns:
 
 ```
-mobiledokan_scraper/
+smartphone_specs_scraper/
 ├── main.py                 # Entry point and orchestration
 ├── scrapers/
 │   ├── __init__.py
@@ -142,7 +142,7 @@ class FileManager:
 ## Price Extraction Strategy
 
 ### Price Structure Analysis
-Based on the provided HTML samples, MobileDokan uses several price patterns:
+Based on the provided HTML samples, source-site uses several price patterns:
 
 1. **Official + Unofficial Prices**: Both prices displayed with tags
 2. **Official Price Only**: Single official price with tag
@@ -366,7 +366,7 @@ tests/
 ### Settings Structure
 ```python
 # config/settings.py
-BASE_URL = "https://www.mobiledokan.com/mobile-category/smartphone"
+BASE_URL = "https://example.com/mobile-category/smartphone"
 USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36...",
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36...",
@@ -420,4 +420,4 @@ logging.basicConfig(
 )
 ```
 
-This design provides a robust, maintainable, and respectful web scraping solution that can handle the complexities of the MobileDokan website while producing clean, structured data for analysis.
+This design provides a robust, maintainable, and respectful web scraping solution that can handle the complexities of the source-site website while producing clean, structured data for analysis.

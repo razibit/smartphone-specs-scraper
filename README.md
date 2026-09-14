@@ -1,12 +1,12 @@
-# MobileDokan Scraper
+# Smartphone Specs Scraper
 
-MobileDokan Scraper is a Python tool for collecting smartphone listing URLs and detailed specifications from the public MobileDokan website. It follows listing pagination, parses product detail pages, validates records, and exports timestamped JSON and CSV files.
+Smartphone Specs Scraper is a Python tool for collecting smartphone listing URLs and detailed specifications from a public smartphone catalog. It follows listing pagination, parses product detail pages, validates records, and exports timestamped JSON and CSV files.
 
-> This project is intended for education, research, and personal analysis. Use it responsibly, follow the source site's terms and `robots.txt`, keep the configured request delay, and comply with applicable law.
+> This project is intended for education, research, and personal analysis. Use it responsibly, follow the source website's terms and `robots.txt`, keep the configured request delay, and comply with applicable law.
 
 ## What it does
 
-- discovers smartphone URLs from MobileDokan category pages;
+- discovers smartphone URLs from public category pages;
 - follows pagination and filters advertisements/non-phone links;
 - extracts general, pricing, hardware, display, camera, design, battery, memory, connectivity, sensor, multimedia, and feature fields;
 - retries transient HTTP failures with delays and exponential backoff;
@@ -45,13 +45,13 @@ The default command scrapes the configured smartphone category and writes result
 python main.py
 ```
 
-Use a small bounded run while developing or checking source-site changes:
+Use a small bounded run while developing or checking source website changes:
 
 ```bash
 python main.py --max-phones 10
 python main.py --start-page 2 --max-phones 10
 python main.py --output-dir ./data --log-level DEBUG
-python main.py --base-url https://www.mobiledokan.com/mobile-category/smartphone
+python main.py --base-url https://example.com/mobile-category/smartphone
 ```
 
 Available options:
@@ -61,7 +61,7 @@ Available options:
 | `--max-phones N` | Limit the number of phones processed | all available |
 | `--start-page N` | Start listing pagination at page `N` | `1` |
 | `--output-dir PATH` | Choose the export directory | `output` |
-| `--base-url URL` | Override the smartphone category URL | configured MobileDokan URL |
+| `--base-url URL` | Override the smartphone category URL | configured source URL |
 | `--log-level LEVEL` | Use `DEBUG`, `INFO`, `WARNING`, or `ERROR` logging | `INFO` |
 
 Generated exports are named like `phones_data_YYYYMMDD_HHMMSS.json` and `phones_data_YYYYMMDD_HHMMSS.csv`. Logs are written to `scraper.log`; generated exports and logs are ignored by Git.
@@ -71,10 +71,10 @@ Generated exports are named like `phones_data_YYYYMMDD_HHMMSS.json` and `phones_
 The package can also be used from Python:
 
 ```python
-from mobiledokan_scraper.config.settings import BASE_URL
-from mobiledokan_scraper.main import MobileDokanScraper
+from smartphone_specs_scraper.config.settings import BASE_URL
+from smartphone_specs_scraper.main import SmartphoneSpecsScraper
 
-scraper = MobileDokanScraper(output_dir="output")
+scraper = SmartphoneSpecsScraper(output_dir="output")
 result = scraper.run_complete_scraping(
     base_url=BASE_URL,
     max_phones=10,
@@ -87,7 +87,7 @@ For lower-level control, `ListingScraper`, `DetailScraper`, `HTTPClient`, and `F
 
 ## Configuration
 
-Runtime constants live in [`mobiledokan_scraper/config/settings.py`](mobiledokan_scraper/config/settings.py), including:
+Runtime constants live in [`smartphone_specs_scraper/config/settings.py`](smartphone_specs_scraper/config/settings.py), including:
 
 - source URLs and selectors;
 - request timeout, delay, retry, and backoff settings;
@@ -102,9 +102,9 @@ The CLI currently exposes safe URL, pagination, output, and log-level overrides.
 Run the deterministic local checks from the repository root:
 
 ```bash
-python -m compileall -q main.py mobiledokan_scraper tests
+python -m compileall -q main.py smartphone_specs_scraper tests
 python -m pytest
-python -m pytest --cov=mobiledokan_scraper --cov-report=term-missing
+python -m pytest --cov=smartphone_specs_scraper --cov-report=term-missing
 ```
 
 The default test command uses local HTML fixtures and mocks. The live price-extraction check is deliberately opt-in because it makes real requests and depends on the current source site:
@@ -121,7 +121,7 @@ See [`CONTRIBUTING.md`](CONTRIBUTING.md) for contribution and validation expecta
 .
 ├── .github/                    # CI, Dependabot, issue forms, PR template
 ├── docs/                       # Usage and exported-data documentation
-├── mobiledokan_scraper/        # Installable scraper package
+├── smartphone_specs_scraper/        # Installable scraper package
 │   ├── config/                 # URLs, selectors, and runtime settings
 │   ├── models/                 # Phone dataclass and validation
 │   ├── scrapers/               # Listing and detail parsers
@@ -134,7 +134,7 @@ See [`CONTRIBUTING.md`](CONTRIBUTING.md) for contribution and validation expecta
 └── requirements-dev.txt        # Runtime plus test dependencies
 ```
 
-The captured HTML pages and fixture files are kept as local parsing examples. They represent snapshots, not guaranteed current source-site behavior.
+The captured HTML pages and fixture files are kept as local parsing examples. They represent snapshots, not guaranteed current source website behavior.
 
 ## Documentation
 
@@ -149,4 +149,3 @@ The captured HTML pages and fixture files are kept as local parsing examples. Th
 ## License
 
 This project is available under the [MIT License](LICENSE).
-

@@ -7,7 +7,7 @@ import tempfile
 import shutil
 from unittest.mock import Mock, patch
 
-from mobiledokan_scraper.main import MobileDokanScraper
+from smartphone_specs_scraper.main import MobileDokanScraper
 
 
 class TestSimpleIntegration:
@@ -48,7 +48,7 @@ class TestSimpleIntegration:
         finally:
             shutil.rmtree(temp_dir, ignore_errors=True)
     
-    @patch('mobiledokan_scraper.utils.http_client.HTTPClient.get')
+    @patch('smartphone_specs_scraper.utils.http_client.HTTPClient.get')
     def test_error_handling_in_workflow(self, mock_get):
         """Test that errors in workflow are handled gracefully."""
         temp_dir = tempfile.mkdtemp()

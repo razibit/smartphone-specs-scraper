@@ -21,8 +21,8 @@ import sys
 import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
-from mobiledokan_scraper.utils.http_client import HTTPClient
-from mobiledokan_scraper.config.settings import (
+from smartphone_specs_scraper.utils.http_client import HTTPClient
+from smartphone_specs_scraper.config.settings import (
     USER_AGENTS, 
     REQUEST_DELAY, 
     MAX_RETRIES,
@@ -98,7 +98,7 @@ class TestHTTPClient(unittest.TestCase):
         second_call_time = time.time() - start_time
         self.assertGreaterEqual(second_call_time, self.client.delay * 0.9)  # Allow some tolerance
     
-    @patch('mobiledokan_scraper.utils.http_client.requests.Session.get')
+    @patch('smartphone_specs_scraper.utils.http_client.requests.Session.get')
     def test_successful_get_request(self, mock_get):
         """Test successful GET request."""
         # Mock successful response
@@ -117,7 +117,7 @@ class TestHTTPClient(unittest.TestCase):
         self.assertIn('headers', call_args.kwargs)
         self.assertIn('User-Agent', call_args.kwargs['headers'])
     
-    @patch('mobiledokan_scraper.utils.http_client.requests.Session.get')
+    @patch('smartphone_specs_scraper.utils.http_client.requests.Session.get')
     def test_404_error_no_retry(self, mock_get):
         """Test that 404 errors are not retried."""
         # Mock 404 response
@@ -133,7 +133,7 @@ class TestHTTPClient(unittest.TestCase):
         # Should only be called once (no retries for 404)
         self.assertEqual(mock_get.call_count, 1)
     
-    @patch('mobiledokan_scraper.utils.http_client.requests.Session.get')
+    @patch('smartphone_specs_scraper.utils.http_client.requests.Session.get')
     @patch('time.sleep')
     def test_rate_limit_retry(self, mock_sleep, mock_get):
         """Test retry logic for rate limiting (429 errors)."""
@@ -155,7 +155,7 @@ class TestHTTPClient(unittest.TestCase):
         self.assertEqual(mock_get.call_count, 2)
         mock_sleep.assert_called_once()  # Should have slept for backoff
     
-    @patch('mobiledokan_scraper.utils.http_client.requests.Session.get')
+    @patch('smartphone_specs_scraper.utils.http_client.requests.Session.get')
     @patch('time.sleep')
     def test_server_error_retry(self, mock_sleep, mock_get):
         """Test retry logic for server errors (5xx)."""
@@ -177,7 +177,7 @@ class TestHTTPClient(unittest.TestCase):
         self.assertEqual(mock_get.call_count, 2)
         mock_sleep.assert_called_once()
     
-    @patch('mobiledokan_scraper.utils.http_client.requests.Session.get')
+    @patch('smartphone_specs_scraper.utils.http_client.requests.Session.get')
     @patch('time.sleep')
     def test_connection_error_retry(self, mock_sleep, mock_get):
         """Test retry logic for connection errors."""
@@ -196,7 +196,7 @@ class TestHTTPClient(unittest.TestCase):
         self.assertEqual(mock_get.call_count, 2)
         mock_sleep.assert_called_once()
     
-    @patch('mobiledokan_scraper.utils.http_client.requests.Session.get')
+    @patch('smartphone_specs_scraper.utils.http_client.requests.Session.get')
     @patch('time.sleep')
     def test_timeout_retry(self, mock_sleep, mock_get):
         """Test retry logic for timeout errors."""
@@ -215,7 +215,7 @@ class TestHTTPClient(unittest.TestCase):
         self.assertEqual(mock_get.call_count, 2)
         mock_sleep.assert_called_once()
     
-    @patch('mobiledokan_scraper.utils.http_client.requests.Session.get')
+    @patch('smartphone_specs_scraper.utils.http_client.requests.Session.get')
     def test_too_many_redirects_no_retry(self, mock_get):
         """Test that redirect loops are not retried."""
         redirect_error = TooManyRedirects("Too many redirects")
@@ -227,7 +227,7 @@ class TestHTTPClient(unittest.TestCase):
         # Should only be called once (no retries for redirect loops)
         self.assertEqual(mock_get.call_count, 1)
     
-    @patch('mobiledokan_scraper.utils.http_client.requests.Session.get')
+    @patch('smartphone_specs_scraper.utils.http_client.requests.Session.get')
     @patch('time.sleep')
     def test_max_retries_exceeded(self, mock_sleep, mock_get):
         """Test behavior when max retries are exceeded."""
@@ -243,7 +243,7 @@ class TestHTTPClient(unittest.TestCase):
         # Should sleep 3 times (rate limiting + 2 retries)
         self.assertEqual(mock_sleep.call_count, 3)
     
-    @patch('mobiledokan_scraper.utils.http_client.requests.Session.get')
+    @patch('smartphone_specs_scraper.utils.http_client.requests.Session.get')
     @patch('time.sleep')
     def test_exponential_backoff(self, mock_sleep, mock_get):
         """Test exponential backoff timing."""
@@ -265,7 +265,7 @@ class TestHTTPClient(unittest.TestCase):
         self.assertIn(INITIAL_BACKOFF, backoff_delays)
         self.assertIn(INITIAL_BACKOFF * BACKOFF_FACTOR, backoff_delays)
     
-    @patch('mobiledokan_scraper.utils.http_client.requests.Session.get')
+    @patch('smartphone_specs_scraper.utils.http_client.requests.Session.get')
     @patch('time.sleep')
     def test_get_with_backoff(self, mock_sleep, mock_get):
         """Test get_with_backoff method."""
@@ -288,7 +288,7 @@ class TestHTTPClient(unittest.TestCase):
         # Should sleep multiple times (rate limiting + backoff + rate limiting again)
         self.assertGreaterEqual(mock_sleep.call_count, 2)
     
-    @patch('mobiledokan_scraper.utils.http_client.requests.Session.head')
+    @patch('smartphone_specs_scraper.utils.http_client.requests.Session.head')
     def test_head_request(self, mock_head):
         """Test HEAD request functionality."""
         mock_response = Mock()
@@ -331,7 +331,7 @@ class TestHTTPClient(unittest.TestCase):
         self.assertEqual(info['max_retries'], MAX_RETRIES)
         self.assertEqual(info['backoff_factor'], BACKOFF_FACTOR)
     
-    @patch('mobiledokan_scraper.utils.http_client.requests.Session.get')
+    @patch('smartphone_specs_scraper.utils.http_client.requests.Session.get')
     def test_custom_headers_preserved(self, mock_get):
         """Test that custom headers are preserved in requests."""
         mock_response = Mock()
@@ -349,7 +349,7 @@ class TestHTTPClient(unittest.TestCase):
         self.assertIn('Authorization', headers)
         self.assertEqual(headers['Authorization'], 'Bearer token123')
     
-    @patch('mobiledokan_scraper.utils.http_client.requests.Session.get')
+    @patch('smartphone_specs_scraper.utils.http_client.requests.Session.get')
     def test_timeout_parameter(self, mock_get):
         """Test that timeout parameter is passed correctly."""
         mock_response = Mock()
@@ -362,7 +362,7 @@ class TestHTTPClient(unittest.TestCase):
         call_args = mock_get.call_args
         self.assertEqual(call_args.kwargs['timeout'], 15)
     
-    @patch('mobiledokan_scraper.utils.http_client.requests.Session.get')
+    @patch('smartphone_specs_scraper.utils.http_client.requests.Session.get')
     def test_verify_parameter(self, mock_get):
         """Test that SSL verification parameter is passed correctly."""
         mock_response = Mock()

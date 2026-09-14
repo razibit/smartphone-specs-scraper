@@ -11,9 +11,9 @@ import time
 from unittest.mock import Mock, patch
 from pathlib import Path
 
-from mobiledokan_scraper.main import MobileDokanScraper
-from mobiledokan_scraper.utils.error_handling import NetworkError, ParsingError, CriticalError
-from mobiledokan_scraper.utils.http_client import HTTPClient
+from smartphone_specs_scraper.main import MobileDokanScraper
+from smartphone_specs_scraper.utils.error_handling import NetworkError, ParsingError, CriticalError
+from smartphone_specs_scraper.utils.http_client import HTTPClient
 
 
 class TestErrorRecovery:
@@ -231,7 +231,7 @@ class TestErrorRecovery:
         scraper = MobileDokanScraper(output_dir=temp_output_dir)
         
         # Create sample data
-        from mobiledokan_scraper.models.phone_data import PhoneSpecifications
+        from smartphone_specs_scraper.models.phone_data import PhoneSpecifications
         phone_specs = [PhoneSpecifications(brand="Test", model="Test")]
         
         # Mock file system error during export

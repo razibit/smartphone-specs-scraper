@@ -522,3 +522,7 @@ class MobileDokanScraper:
             self.logger.info("Cleanup completed successfully")
         except Exception as e:
             self.logger.warning(f"Error during cleanup: {e}")
+
+
+# Neutral public alias for new integrations and documentation.
+SmartphoneSpecsScraper = MobileDokanScraper

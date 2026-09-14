@@ -13,8 +13,8 @@ from pathlib import Path
 from datetime import datetime
 from unittest.mock import patch, mock_open
 
-from mobiledokan_scraper.utils.file_manager import FileManager
-from mobiledokan_scraper.models.phone_data import PhoneSpecifications
+from smartphone_specs_scraper.utils.file_manager import FileManager
+from smartphone_specs_scraper.models.phone_data import PhoneSpecifications
 
 
 @pytest.fixture
@@ -118,7 +118,7 @@ class TestFileManagerInitialization:
     
     def test_init_with_default_directory(self):
         """Test initialization with default output directory."""
-        with patch('mobiledokan_scraper.utils.file_manager.Path.mkdir') as mock_mkdir:
+        with patch('smartphone_specs_scraper.utils.file_manager.Path.mkdir') as mock_mkdir:
             file_manager = FileManager()
             assert file_manager.output_dir.name == 'output'
             mock_mkdir.assert_called_once_with(parents=True, exist_ok=True)
@@ -139,7 +139,7 @@ class TestFileManagerInitialization:
     
     def test_create_output_directory_failure(self):
         """Test handling of directory creation failure."""
-        with patch('mobiledokan_scraper.utils.file_manager.Path.mkdir', side_effect=OSError("Permission denied")):
+        with patch('smartphone_specs_scraper.utils.file_manager.Path.mkdir', side_effect=OSError("Permission denied")):
             with pytest.raises(OSError):
                 FileManager(output_dir='/invalid/path')
 
@@ -149,7 +149,7 @@ class TestFilenameGeneration:
     
     def test_generate_filename_with_timestamp(self, file_manager):
         """Test filename generation with timestamp."""
-        with patch('mobiledokan_scraper.utils.file_manager.datetime') as mock_datetime:
+        with patch('smartphone_specs_scraper.utils.file_manager.datetime') as mock_datetime:
             mock_datetime.now.return_value.strftime.return_value = '20240128_143052'
             
             filename = file_manager.generate_filename('test', 'json')
@@ -197,7 +197,7 @@ class TestJSONExport:
     
     def test_save_to_json_with_timestamp(self, file_manager, sample_phone_data):
         """Test JSON saving with timestamp in filename."""
-        with patch('mobiledokan_scraper.utils.file_manager.datetime') as mock_datetime:
+        with patch('smartphone_specs_scraper.utils.file_manager.datetime') as mock_datetime:
             mock_datetime.now.return_value.strftime.return_value = '20240128_143052'
             
             output_path = file_manager.save_to_json(sample_phone_data)
@@ -246,7 +246,7 @@ class TestCSVExport:
     
     def test_save_to_csv_with_timestamp(self, file_manager, sample_phone_data):
         """Test CSV saving with timestamp in filename."""
-        with patch('mobiledokan_scraper.utils.file_manager.datetime') as mock_datetime:
+        with patch('smartphone_specs_scraper.utils.file_manager.datetime') as mock_datetime:
             mock_datetime.now.return_value.strftime.return_value = '20240128_143052'
             
             output_path = file_manager.save_to_csv(sample_phone_data)
@@ -320,7 +320,7 @@ class TestPhoneSpecificationsExport:
     
     def test_save_phone_specifications_with_timestamp(self, file_manager, sample_phone_specifications):
         """Test saving phone specifications with timestamp."""
-        with patch('mobiledokan_scraper.utils.file_manager.datetime') as mock_datetime:
+        with patch('smartphone_specs_scraper.utils.file_manager.datetime') as mock_datetime:
             mock_datetime.now.return_value.strftime.return_value = '20240128_143052'
             
             paths = file_manager.save_phone_specifications(sample_phone_specifications)

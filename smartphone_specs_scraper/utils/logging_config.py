@@ -24,7 +24,7 @@ class ScraperLogger:
     and error tracking capabilities.
     """
     
-    def __init__(self, name: str = 'mobiledokan_scraper', 
+    def __init__(self, name: str = 'smartphone_specs_scraper', 
                  log_level: str = LOG_LEVEL,
                  log_file: Optional[str] = None,
                  console_output: bool = True):
@@ -308,7 +308,7 @@ class ProgressTracker:
         self.logger.log_progress(self.current, self.total, self.operation, message)
 
 
-def setup_logging(name: str = 'mobiledokan_scraper', 
+def setup_logging(name: str = 'smartphone_specs_scraper', 
                  log_level: str = LOG_LEVEL,
                  log_file: Optional[str] = None) -> ScraperLogger:
     """
@@ -325,7 +325,7 @@ def setup_logging(name: str = 'mobiledokan_scraper',
     return ScraperLogger(name=name, log_level=log_level, log_file=log_file)
 
 
-def get_logger(name: str = 'mobiledokan_scraper') -> logging.Logger:
+def get_logger(name: str = 'smartphone_specs_scraper') -> logging.Logger:
     """
     Get a logger instance.
     

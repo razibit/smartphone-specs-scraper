@@ -8,8 +8,8 @@ including JSON data extraction, pagination handling, and filtering logic.
 import unittest
 from unittest.mock import Mock, patch, MagicMock
 import json
-from mobiledokan_scraper.scrapers.listing_scraper import ListingScraper
-from mobiledokan_scraper.utils.http_client import HTTPClient
+from smartphone_specs_scraper.scrapers.listing_scraper import ListingScraper
+from smartphone_specs_scraper.utils.http_client import HTTPClient
 
 
 class TestListingScraper(unittest.TestCase):
@@ -402,7 +402,7 @@ class TestListingScraper(unittest.TestCase):
         has_content = self.scraper._page_has_phone_content(html_content)
         self.assertFalse(has_content)
     
-    @patch('mobiledokan_scraper.scrapers.listing_scraper.BeautifulSoup')
+    @patch('smartphone_specs_scraper.scrapers.listing_scraper.BeautifulSoup')
     def test_extract_phones_from_html_fallback(self, mock_soup):
         """Test HTML parsing fallback when JavaScript extraction fails."""
         # Mock BeautifulSoup to return phone links

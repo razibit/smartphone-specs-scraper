@@ -8,7 +8,7 @@
 
 ## Validation
 
-- [ ] `python -m compileall -q main.py mobiledokan_scraper tests`
+- [ ] `python -m compileall -q main.py smartphone_specs_scraper tests`
 - [ ] `python -m pytest`
 - [ ] Documentation and fixtures updated where needed
 

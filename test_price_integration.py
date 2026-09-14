@@ -4,8 +4,8 @@ Integration test to verify price extraction is working with real data.
 """
 
 import pytest
-from mobiledokan_scraper.scrapers.detail_scraper import DetailScraper
-from mobiledokan_scraper.utils.http_client import HTTPClient
+from smartphone_specs_scraper.scrapers.detail_scraper import DetailScraper
+from smartphone_specs_scraper.utils.http_client import HTTPClient
 
 
 @pytest.mark.live

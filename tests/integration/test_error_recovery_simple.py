@@ -8,7 +8,7 @@ import tempfile
 import shutil
 from unittest.mock import Mock, patch
 
-from mobiledokan_scraper.main import MobileDokanScraper
+from smartphone_specs_scraper.main import MobileDokanScraper
 
 
 class TestErrorRecoverySimple:
@@ -202,7 +202,7 @@ class TestErrorRecoverySimple:
             scraper = MobileDokanScraper(output_dir=temp_dir)
             
             # Create sample data
-            from mobiledokan_scraper.models.phone_data import PhoneSpecifications
+            from smartphone_specs_scraper.models.phone_data import PhoneSpecifications
             phone_specs = [PhoneSpecifications(brand="Test", model="Test")]
             
             # Mock file system error during export

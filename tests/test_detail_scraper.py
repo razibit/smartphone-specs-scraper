@@ -10,9 +10,9 @@ from unittest.mock import Mock, patch, MagicMock
 import os
 from bs4 import BeautifulSoup
 
-from mobiledokan_scraper.scrapers.detail_scraper import DetailScraper
-from mobiledokan_scraper.utils.http_client import HTTPClient
-from mobiledokan_scraper.models.phone_data import PhoneSpecifications
+from smartphone_specs_scraper.scrapers.detail_scraper import DetailScraper
+from smartphone_specs_scraper.utils.http_client import HTTPClient
+from smartphone_specs_scraper.models.phone_data import PhoneSpecifications
 
 
 class TestDetailScraper(unittest.TestCase):
@@ -279,7 +279,7 @@ class TestDetailScraper(unittest.TestCase):
         result = self.scraper._normalize_specification_value('brand', None)
         self.assertEqual(result, '')
     
-    @patch('mobiledokan_scraper.scrapers.detail_scraper.datetime')
+    @patch('smartphone_specs_scraper.scrapers.detail_scraper.datetime')
     def test_scrape_phone_details_metadata(self, mock_datetime):
         """Test that metadata is properly added to scraped phone details."""
         # Mock datetime

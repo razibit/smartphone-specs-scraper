@@ -6,7 +6,7 @@ Tests the PhoneSpecifications dataclass, validation methods, and utility functio
 
 import pytest
 from datetime import datetime
-from mobiledokan_scraper.models.phone_data import (
+from smartphone_specs_scraper.models.phone_data import (
     PhoneSpecifications, 
     PhoneDataValidator, 
     validate_phone_list

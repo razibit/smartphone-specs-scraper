@@ -11,7 +11,7 @@ from unittest.mock import Mock, patch
 from bs4 import BeautifulSoup
 from requests.exceptions import ConnectionError, RequestException
 
-from mobiledokan_scraper.utils.error_handling import (
+from smartphone_specs_scraper.utils.error_handling import (
     ScraperError,
     NetworkError,
     ParsingError,
@@ -24,7 +24,7 @@ from mobiledokan_scraper.utils.error_handling import (
     handle_parsing_error,
     setup_error_handling
 )
-from mobiledokan_scraper.utils.logging_config import ScraperLogger
+from smartphone_specs_scraper.utils.logging_config import ScraperLogger
 
 
 class TestCustomExceptions:
